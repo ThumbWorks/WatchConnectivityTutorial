@@ -8,8 +8,19 @@
 
 import WatchKit
 import Foundation
+import WatchConnectivity
 
 class InterfaceController: WKInterfaceController {
+
+    let session : WCSession!
+
+    override init() {
+        if(WCSession.isSupported()) {
+            session =  WCSession.defaultSession()
+        } else {
+            session = nil
+        }
+    }
 
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
@@ -27,8 +38,21 @@ class InterfaceController: WKInterfaceController {
         super.didDeactivate()
     }
 
+    
     func buttonPressed(offset : Int) {
-        print("Button pressed \(offset)")
+        
+        // verify that this device supports WCSession (iPod and iPad do not as of β1
+        if(WCSession.isSupported()) {
+            
+            // create a message dictionary to send
+            let message = ["buttonOffset" : offset]
+            
+            session.sendMessage(message, replyHandler: { (content:[String : AnyObject]) -> Void in
+                print("Our counterpart sent something back. This is optional")
+                }, errorHandler: {  (error ) -> Void in
+                    print("We got an error from our paired device : " + error.domain)
+            })
+        }
     }
     
     @IBAction func topLeftButtonTapped() {
