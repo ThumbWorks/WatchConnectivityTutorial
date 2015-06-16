@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="8121.17" systemVersion="14E7f" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8101.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="8066.14"/>
+    </dependencies>
+    <scenes>
+        <!--Interface Controller-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="WatchConnectivityTutorial_WatchKit_App" customModuleProvider="target">
+                    <items>
+                        <group width="1" alignment="left" id="46y-5h-MWx">
+                            <items>
+                                <button width="68" alignment="left" title="😀" id="sxV-ZK-crL">
+                                    <connections>
+                                        <action selector="topLeftButtonTapped" destination="AgC-eL-Hgc" id="bcr-Lj-cWq"/>
+                                    </connections>
+                                </button>
+                                <button width="68" alignment="left" title="😁" id="cmC-Ud-GFf">
+                                    <connections>
+                                        <action selector="topRightButtonTapped" destination="AgC-eL-Hgc" id="Z8C-rJ-8n6"/>
+                                    </connections>
+                                </button>
+                            </items>
+                        </group>
+                        <group width="1" alignment="left" id="QDs-p2-b4e">
+                            <items>
+                                <button width="68" alignment="left" title="😙" id="D5H-Qe-06f">
+                                    <connections>
+                                        <action selector="bottomLeftButtonTapped" destination="AgC-eL-Hgc" id="tlS-m3-9RQ"/>
+                                    </connections>
+                                </button>
+                                <button width="67" alignment="left" title="😝" id="7oc-Wj-z7f">
+                                    <connections>
+                                        <action selector="bottomRightButtonTapped" destination="AgC-eL-Hgc" id="b7b-Kt-S9A"/>
+                                    </connections>
+                                </button>
+                            </items>
+                        </group>
+                        <label width="136" alignment="left" text="Label" textAlignment="center" id="Zdn-L9-J4R"/>
+                    </items>
+                    <connections>
+                        <outlet property="tappedLabel" destination="Zdn-L9-J4R" id="rbJ-wP-a1x"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="248" y="139"/>
+        </scene>
+        <!--Static Notification Interface Controller-->
+        <scene sceneID="AEw-b0-oYE">
+            <objects>
+                <notificationController id="YCC-NB-fut">
+                    <items>
+                        <label alignment="left" text="Alert Label" id="IdU-wH-bcW"/>
+                    </items>
+                    <notificationCategory key="notificationCategory" identifier="myCategory" id="JfB-70-Muf"/>
+                    <connections>
+                        <outlet property="notificationAlertLabel" destination="IdU-wH-bcW" id="JKC-fr-R95"/>
+                        <segue destination="4sK-HA-Art" kind="relationship" relationship="dynamicNotificationInterface" id="kXh-Jw-8B1"/>
+                    </connections>
+                </notificationController>
+            </objects>
+            <point key="canvasLocation" x="220" y="643"/>
+        </scene>
+        <!--Notification Controller-->
+        <scene sceneID="ZPc-GJ-vnh">
+            <objects>
+                <controller id="4sK-HA-Art" customClass="NotificationController" customModule="WatchConnectivityTutorial_WatchKit_App" customModuleProvider="target"/>
+            </objects>
+            <point key="canvasLocation" x="468" y="643"/>
+        </scene>
+    </scenes>
+</document>
