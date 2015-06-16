@@ -7,12 +7,39 @@
 //
 
 import UIKit
+import WatchConnectivity
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, WCSessionDelegate {
 
+    @IBOutlet var buttons: [UIButton]!
+    let session : WCSession!
+
+    required init(coder aDecoder: NSCoder) {
+        self.session = WCSession.defaultSession()
+        super.init(coder: aDecoder)
+    }
+    
+    @IBAction func tappedButton(sender: UIButton) {
+        
+        if let i = buttons.indexOf(sender) {
+            let message = ["buttonOffset" : i]
+            
+            session.sendMessage(message, replyHandler: { (content:[String : AnyObject]) -> Void in
+                print("Our counterpart sent something back. This is optional")
+                }, errorHandler: {  (error ) -> Void in
+                    print("We got an error from our watch device : " + error.domain)
+            })
+            
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        if(WCSession.isSupported()) {
+            session.delegate = self
+            session.activateSession()
+        }
     }
 
     override func didReceiveMemoryWarning() {
