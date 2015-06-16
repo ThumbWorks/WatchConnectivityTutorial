@@ -40,6 +40,9 @@
                         </group>
                         <label width="136" alignment="left" text="Label" textAlignment="center" id="Zdn-L9-J4R"/>
                     </items>
+                    <connections>
+                        <outlet property="tappedLabel" destination="Zdn-L9-J4R" id="rbJ-wP-a1x"/>
+                    </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="248" y="139"/>

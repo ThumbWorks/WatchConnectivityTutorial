@@ -10,9 +10,10 @@ import WatchKit
 import Foundation
 import WatchConnectivity
 
-class InterfaceController: WKInterfaceController {
+class InterfaceController: WKInterfaceController, WCSessionDelegate {
 
     let session : WCSession!
+    @IBOutlet var tappedLabel: WKInterfaceLabel!
 
     override init() {
         if(WCSession.isSupported()) {
@@ -31,7 +32,15 @@ class InterfaceController: WKInterfaceController {
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
+        
+        if(WCSession.isSupported()) {
+            session.delegate = self
+            session.activateSession()
+        }
+        self.tappedLabel.setText("")
+        
     }
+
 
     override func didDeactivate() {
         // This method is called when watch view controller is no longer visible
