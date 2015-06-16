@@ -79,4 +79,25 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     @IBAction func bottomRightButtonTapped() {
         buttonPressed(3)
     }
+    
+    func session(session: WCSession, didReceiveMessage message: [String : AnyObject], replyHandler: ([String : AnyObject]) -> Void) {
+        print("we got something from the iPhone" + message.description)
+        
+        if let offsetValue = message["buttonOffset"] as! Int? {
+            
+            let labelText = ["top Left", "top Right", "bottom Left", "bottom Right"][offsetValue]
+            
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.tappedLabel.setText(labelText)
+            })
+            
+            // Delay a little bit then set it back
+            let delayTime = dispatch_time(DISPATCH_TIME_NOW,
+                Int64(0.5 * Double(NSEC_PER_SEC)))
+            dispatch_after(delayTime, dispatch_get_main_queue()) {
+                self.tappedLabel.setText("")
+            }
+        }
+        // optionally send some data back through the replyHandler
+    }
 }
