@@ -9,7 +9,6 @@
 import WatchKit
 import Foundation
 
-
 class InterfaceController: WKInterfaceController {
 
     override func awakeWithContext(context: AnyObject?) {
@@ -28,4 +27,23 @@ class InterfaceController: WKInterfaceController {
         super.didDeactivate()
     }
 
+    func buttonPressed(offset : Int) {
+        print("Button pressed \(offset)")
+    }
+    
+    @IBAction func topLeftButtonTapped() {
+        buttonPressed(0)
+    }
+    
+    @IBAction func topRightButtonTapped() {
+        buttonPressed(1)
+    }
+    
+    @IBAction func bottomLeftButtonTapped() {
+        buttonPressed(2)
+    }
+    
+    @IBAction func bottomRightButtonTapped() {
+        buttonPressed(3)
+    }
 }
